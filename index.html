@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="mobile-web-app-compatible" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles/style.css">
+  <title>Minesweeper</title>
+</head>
+
+<body>
+  <div class="game-display">
+    <div class="vertical-block">
+      <h1>Minesweeper!</h1>
+      <h2>by Bryce.</h2>
+      <div class="canvas-container">
+        <div class="canvas-border">
+          <canvas id="game" width="1000px" height="1000px"></canvas>
+        </div>
+      </div>
+      <div class="slider-menu">
+        <div class="slider-container">
+          <h3>Number of Bombs</h3>
+          <input type="range" name="nBombs" id="number-bombs" min="5" max="50" value="15">
+        </div>
+        <div class="slider-container">
+          <h3>Board Size</h3>
+          <input type="range" name="boardSize" id="board-size" min="5" max="40" value="20">
+        </div>
+      </div>
+      <button id="restart">Restart</button>
+    </div>
+  </div>
+  <script src="src/board.js"></script>
+  <script src="src/main.js"></script>
+</body>
+
+</html>
