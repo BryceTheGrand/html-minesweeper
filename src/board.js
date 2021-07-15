@@ -144,6 +144,7 @@ class Board {
           this.board[row][col] = 1;
           break;
       }
+    this.checkBoard();
   }
 
   show(ctx, x, y, w, h) {
@@ -214,9 +215,9 @@ class Board {
       ctx.fillText("You win!", w / 2, h / 2);
       let temp = {
         strokeStyle: ctx.strokeStyle,
-        lineWidth: ctx.lineWidth
+        lineWidth: ctx.lineWidth,
       };
-      ctx.lineWidth = 8;
+      ctx.lineWidth = 5;
       ctx.strokeStyle = "rgb(25, 20, 20)";
       ctx.strokeText("You win!", w / 2, h / 2);
       ctx.lineWidth = temp.lineWidth;
