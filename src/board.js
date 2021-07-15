@@ -176,7 +176,8 @@ class Board {
             ctx.fillStyle = "rgb(80, 120, 100)";
             break;
           case 4:
-            ctx.fillStyle = "rgb(120, 30, 80)";
+            if (this.lost) ctx.fillStyle = "rgb(120, 30, 80)";
+            else ctx.fillStyle = "rgb(80, 120, 100)";
             break;
           default:
             ctx.fillStyle = "rgb(0, 255, 255)";
