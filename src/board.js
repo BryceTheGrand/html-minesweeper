@@ -18,7 +18,7 @@ class Board {
       }
     }
     this.started = false;
-    this.lost = false;
+    this.lost = true;
     this.won = false;
   }
 
@@ -176,7 +176,7 @@ class Board {
             ctx.fillStyle = "rgb(80, 120, 100)";
             break;
           case 4:
-            ctx.fillStyle = "rgb(80, 120, 100)";
+            ctx.fillStyle = "rgb(120, 30, 80)";
             break;
           default:
             ctx.fillStyle = "rgb(0, 255, 255)";
