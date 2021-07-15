@@ -19,12 +19,14 @@ class Board {
     }
     this.started = false;
     this.lost = false;
+    this.won = false;
   }
 
   restart() {
     this.clearBoard();
     this.started = false;
     this.lost = false;
+    this.won = false;
   }
 
   calcThreatMap() {
@@ -84,6 +86,26 @@ class Board {
     this.calcThreatMap();
   }
 
+  checkBoard() {
+    let gameover = true;
+    for (let i = 0; i < this.size; i++) {
+      if (!gameover) break;
+      for (let j = 0; j < this.size; j++) {
+        if (
+          this.board[i][j] == 0 ||
+          this.board[i][j] == 1 ||
+          this.board[i][j] == 3
+        ) {
+          gameover = false;
+          break;
+        }
+      }
+    }
+    if (gameover) {
+      this.won = true;
+    }
+  }
+
   makeMove(row, col) {
     if (!this.started) {
       do {
@@ -93,7 +115,7 @@ class Board {
         }
       } while (!this.started);
     }
-    if (!this.lost) {
+    if (!this.lost && !this.won) {
       if (this.board[row][col] == 0) {
         this.board[row][col] = 2;
         if (this.threatMap[row][col] == 0) {
@@ -102,24 +124,26 @@ class Board {
       } else if (this.board[row][col] == 1) {
         this.lost = true;
       }
+      this.checkBoard();
     }
   }
 
   flag(row, col) {
-    switch (this.board[row][col]) {
-      case 0:
-        this.board[row][col] = 3;
-        break;
-      case 1:
-        this.board[row][col] = 4;
-        break;
-      case 3:
-        this.board[row][col] = 0;
-        break;
-      case 4:
-        this.board[row][col] = 1;
-        break;
-    }
+    if (!this.won)
+      switch (this.board[row][col]) {
+        case 0:
+          this.board[row][col] = 3;
+          break;
+        case 1:
+          this.board[row][col] = 4;
+          break;
+        case 3:
+          this.board[row][col] = 0;
+          break;
+        case 4:
+          this.board[row][col] = 1;
+          break;
+      }
   }
 
   show(ctx, x, y, w, h) {
@@ -140,7 +164,6 @@ class Board {
 
             ctx.font = 0.9 * (w / this.size) + "px Arial";
             let temp = ctx.fillStyle;
-            let tempW = ctx.lineWidth;
             ctx.fillStyle = "rgb(245, 230, 220)";
             ctx.textAlign = "center";
             ctx.textBaseline = "middle";
@@ -150,7 +173,6 @@ class Board {
               ((i + 0.56) * h) / this.size
             );
             ctx.fillStyle = temp;
-            ctx.lineWidth = tempW;
             break;
           case 3:
             ctx.fillStyle = "rgb(80, 120, 100)";
@@ -185,6 +207,22 @@ class Board {
       ctx.moveTo(x, y + (j * h) / this.size);
       ctx.lineTo(x + w, y + (j * h) / this.size);
       ctx.stroke();
+    }
+    if (this.won) {
+      ctx.fillStyle = "rgb(255, 255, 255)";
+      ctx.font = 0.2 * w + "px Arial";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText("You win!", w / 2, h / 2);
+      let temp = {
+        strokeStyle: ctx.strokeStyle,
+        lineWidth: ctx.lineWidth
+      };
+      ctx.lineWidth = 8;
+      ctx.strokeStyle = "rgb(25, 20, 20)";
+      ctx.strokeText("You win!", w / 2, h / 2);
+      ctx.lineWidth = temp.lineWidth;
+      ctx.strokeStyle = temp.strokeStyle;
     }
   }
 

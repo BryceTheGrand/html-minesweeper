@@ -64,6 +64,12 @@ h2 {
   width: min-content;
 }
 
+.container-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #game {
   height: 65vmin;
   width: 65vmin;

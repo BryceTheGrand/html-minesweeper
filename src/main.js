@@ -1,7 +1,7 @@
 let canvas = document.getElementById("game");
 let ctx = canvas.getContext("2d");
 let gameSize = 20;
-let nBombs = Math.floor(0.15 * 30 * 30);
+let nBombs = Math.floor(0.15 * gameSize * gameSize);
 let gameBoard = new Board(gameSize, nBombs);
 let canvasDOM = canvas.getBoundingClientRect();
 let restartButton = document.getElementById("restart");
@@ -11,13 +11,14 @@ restartButton.addEventListener("click", () => {
 
 let numberBombsSlider = document.getElementById("number-bombs");
 numberBombsSlider.addEventListener("change", () => {
-  nBombs = Math.floor((numberBombsSlider.value / 100) * 30 * 30);
+  nBombs = Math.floor((numberBombsSlider.value / 100) * gameSize * gameSize);
   gameBoard = new Board(gameSize, nBombs);
 });
 
 let boardSizeSlider = document.getElementById("board-size");
 boardSizeSlider.addEventListener("change", () => {
   gameSize = boardSizeSlider.value;
+  nBombs = Math.floor((numberBombsSlider.value / 100) * gameSize * gameSize);
   gameBoard = new Board(gameSize, nBombs);
 });
 
