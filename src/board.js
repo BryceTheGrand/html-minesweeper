@@ -18,7 +18,7 @@ class Board {
       }
     }
     this.started = false;
-    this.lost = true;
+    this.lost = false;
     this.won = false;
   }
 
