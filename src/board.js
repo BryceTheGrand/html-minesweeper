@@ -160,10 +160,7 @@ class Board {
             }
             break;
           case 2:
-            ctx.fillStyle = "rgba(205, 200, 195, 0)";
-
-            ctx.font = 0.9 * (w / this.size) + "px Arial";
-            let temp = ctx.fillStyle;
+            ctx.font = 0.9 * (w / this.size) + "px Courier New";
             ctx.fillStyle = "rgb(245, 230, 220)";
             ctx.textAlign = "center";
             ctx.textBaseline = "middle";
@@ -172,7 +169,7 @@ class Board {
               ((j + 0.5) * w) / this.size,
               ((i + 0.56) * h) / this.size
             );
-            ctx.fillStyle = temp;
+            ctx.fillStyle = "rgba(205, 200, 195, 0)";
             break;
           case 3:
             ctx.fillStyle = "rgb(80, 120, 100)";
@@ -196,6 +193,7 @@ class Board {
       }
     }
 
+    ctx.strokeStyle = "rgb(40, 35, 35)";
     for (let i = 1; i < this.size; i++) {
       ctx.beginPath();
       ctx.moveTo(x + (i * w) / this.size, y);
@@ -210,7 +208,7 @@ class Board {
     }
     if (this.won) {
       ctx.fillStyle = "rgb(255, 255, 255)";
-      ctx.font = 0.2 * w + "px Arial";
+      ctx.font = 0.2 * w + "px Courier New";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ctx.fillText("You win!", w / 2, h / 2);
