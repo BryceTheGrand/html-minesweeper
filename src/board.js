@@ -157,7 +157,7 @@ class Board {
           case 1:
             ctx.fillStyle = "rgb(25, 20, 20)";
             if (this.lost) {
-              ctx.fillStyle = "rgb(180, 30, 50)";
+              ctx.fillStyle = "rgba(25, 20, 20, 1)";
             }
             break;
           case 2:
@@ -176,8 +176,9 @@ class Board {
             ctx.fillStyle = "rgb(80, 120, 100)";
             break;
           case 4:
-            if (this.lost) ctx.fillStyle = "rgb(120, 30, 80)";
-            else ctx.fillStyle = "rgb(80, 120, 100)";
+            if (this.lost) {
+              ctx.fillStyle = "rgb(0, 120, 100)";
+            } else ctx.fillStyle = "rgb(80, 120, 100)";
             break;
           default:
             ctx.fillStyle = "rgb(0, 255, 255)";
@@ -192,6 +193,21 @@ class Board {
           h / this.size
         );
         ctx.fill();
+
+        if ((this.board[i][j] == 1 || this.board[i][j] == 4) && this.lost) {
+          ctx.beginPath();
+          ctx.fillStyle = "rgb(180, 30, 50)";
+          ctx.strokeStyle = "rgb(205, 200, 200)";
+          ctx.arc(
+            x + ((j + 0.5) * w) / this.size,
+            y + ((i + 0.5) * h) / this.size,
+            w / this.size / 3,
+            0,
+            2 * Math.PI
+          );
+          ctx.fill();
+          ctx.stroke();
+        }
       }
     }
 

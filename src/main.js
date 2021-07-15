@@ -24,7 +24,6 @@ boardSizeSlider.addEventListener("change", () => {
 
 canvas.addEventListener("click", (evt) => {
   let pos = getPos(evt);
-  console.log(pos);
   gameBoard.makeMove(pos.y, pos.x);
 });
 
